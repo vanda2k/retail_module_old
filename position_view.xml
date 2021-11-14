@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="position_tree_view" model="ir.ui.view">
+            <field name="name">Position Tree View</field>
+            <field name="model">position</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="employee_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="position_form_view" model="ir.ui.view">
+            <field name="name">Position Form View</field>
+            <field name="model">position</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="employee_ids" widget="many2many_tags" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="retail_module_position_action" model="ir.actions.act_window">
+            <field name="name">Chức Vụ</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">position</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="retail_module_root_menu" name="Hệ thống bán lẻ" sequence="2" />
+        <menuitem id="retail_module_retail_staff1_menu" name="Nhân Viên" parent="retail_module.retail_module_retail_staff_menu"
+                  action="retail_module.retail_module_retail_staff_action" sequence="1" />
+        <menuitem id="retail_module_position_menu" name="Chức Vụ" parent="retail_module.retail_module_retail_staff_menu"
+                  action="retail_module.retail_module_position_action" sequence="2" />
+
+    </data>
+</odoo>

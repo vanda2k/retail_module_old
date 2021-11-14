@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="toy_order_tree_view" model="ir.ui.view">
+            <field name="name">Order Tree View</field>
+            <field name="model">toy_order</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="number_order"/>
+                    <field name="oder_date"/>
+                    <field name="customer_name_id"/>
+                    <field name="employee_name_id"/>
+                    <field name="total_price"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="toy_order_form_view" model="ir.ui.view">
+            <field name="name">Order Form View</field>
+            <field name="model">toy_order</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="success" string="Hoàn thành" type="object" states="0,2" class="btn-primary"/>
+                        <button name="cancel" string="Huỷ bỏ" type="object" states="1" class="btn-primary"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="number_order"/>
+                                <field name="oder_date"/>
+                                <field name="customer_name_id"/>
+                                <field name="employee_name_id"/>
+                            </group>
+                            <group>
+                                <field name="total_price"/>
+<!--                                <field name="status"/>-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Đơn hàng">
+                                <field name="order_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="description"/>
+                                        <field name="sale_price"/>
+                                        <field name="amount"/>
+                                        <field name="sub_total" readonly="1" force_save="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="retail_module_toy_order_action" model="ir.actions.act_window">
+            <field name="name">Hoá Đơn</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">toy_order</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_id" ref="product_tree_view"/category-->
+        </record>
+
+        <menuitem id="retail_module_root_menu" name="Hệ thống bán lẻ" sequence="2" />
+        <menuitem id="retail_module_toy_order_menu" name="Hoá Đơn" parent="retail_module.retail_module_root_menu"
+                  action="retail_module.retail_module_toy_order_action" sequence="4" />
+        <menuitem id="retail_module_toy_order1_menu" name="Bán Hàng" parent="retail_module.retail_module_toy_order_menu"
+                  action="retail_module.retail_module_toy_order_action" sequence="1" />
+
+    </data>
+</odoo>

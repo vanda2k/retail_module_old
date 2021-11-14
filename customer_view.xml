@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="toy_customer_tree_view" model="ir.ui.view">
+            <field name="name">Customer Tree View</field>
+            <field name="model">toy_customer</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="company"/>
+                    <field name="address"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="toy_customer_form_view" model="ir.ui.view">
+            <field name="name">Customer Form View</field>
+            <field name="model">toy_customer</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company"/>
+                                <field name="address"/>
+                                <field name="phone"/>
+                            </group>
+                            <group>
+                                <field name="iscustomer"/>
+                                <field name="issupplier"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="retail_module_toy_customer_action" model="ir.actions.act_window">
+            <field name="name">Khách Hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">toy_customer</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_id" ref="product_tree_view"/category-->
+        </record>
+
+        <menuitem id="retail_module_root_menu" name="Hệ thống bán lẻ" sequence="2" />
+        <menuitem id="retail_module_toy_customer_menu" name="Khách Hàng" parent="retail_module.retail_module_root_menu"
+                  action="retail_module.retail_module_toy_customer_action" sequence="3" />
+        <menuitem id="retail_module_toy_customer1_menu" name="Khách Hàng" parent="retail_module.retail_module_toy_customer_menu"
+                  action="retail_module.retail_module_toy_customer_action" sequence="1" />
+
+    </data>
+</odoo>

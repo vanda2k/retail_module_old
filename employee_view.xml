@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="retail_staff_tree_view" model="ir.ui.view">
+            <field name="name">Employee Tree View</field>
+            <field name="model">retail_staff</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="position_id"/>
+                    <field name="date_of_birth"/>
+                    <field name="address"/>
+                    <field name="phone"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="retail_staff_form_view" model="ir.ui.view">
+            <field name="name">Employee Form View</field>
+            <field name="model">retail_staff</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="position_id"/>
+                                <field name="date_of_birth"/>
+                                <field name="address"/>
+                                <field name="phone"/>
+                            </group>
+                            <group>
+                                <field name="gender"/>
+                                <field name="cmnd"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="retail_module_retail_staff_action" model="ir.actions.act_window">
+            <field name="name">Nhân Viên</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">retail_staff</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_id" ref="product_tree_view"/category-->
+        </record>
+
+        <menuitem id="retail_module_root_menu" name="Hệ thống bán lẻ" sequence="2" />
+        <menuitem id="retail_module_retail_staff_menu" name="Nhân Viên" parent="retail_module.retail_module_root_menu"
+                  action="retail_module.retail_module_retail_staff_action" sequence="2" />
+
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="unit_tree_view" model="ir.ui.view">
+            <field name="name">Category Tree View</field>
+            <field name="model">toy_unit</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="product_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="unit_form_view" model="ir.ui.view">
+            <field name="name">Category Form View</field>
+            <field name="model">toy_unit</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="product_ids" widget="many2many_tags" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="retail_module_unit_action" model="ir.actions.act_window">
+            <field name="name">Đơn Vị Sản Phẩm</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">toy_unit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="retail_module_root_menu" name="Hệ thống bán lẻ" sequence="2" />
+        <menuitem id="retail_module_unit_menu" name="Đơn Vị Sản Phẩm" parent="retail_module.retail_module_product_menu"
+                  action="retail_module.retail_module_unit_action" sequence="3" />
+
+    </data>
+</odoo>

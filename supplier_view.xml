@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="toy_supplier_tree_view" model="ir.ui.view">
+            <field name="name">Supplier Tree View</field>
+            <field name="model">toy_supplier</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="toy_supplier_form_view" model="ir.ui.view">
+            <field name="name">Supplier Form View</field>
+            <field name="model">toy_supplier</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="phone"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="retail_module_toy_supplier_action" model="ir.actions.act_window">
+            <field name="name">Nhà Cung Cấp</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">toy_supplier</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_id" ref="product_tree_view"/category-->
+        </record>
+        <menuitem id="retail_module_root_menu" name="Hệ thống bán lẻ" sequence="2" />
+        <menuitem id="retail_module_toy_supplier_menu" name="Nhà Cung Cấp" parent="retail_module.retail_module_toy_customer_menu"
+                  action="retail_module.retail_module_toy_supplier_action" sequence="2" />
+    </data>
+</odoo>

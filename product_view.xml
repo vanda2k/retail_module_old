@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_tree_view" model="ir.ui.view">
+            <field name="name">Product Tree View</field>
+            <field name="model">toy_product</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <field name="unit_id"/>
+                    <field name="quantity"/>
+                    <field name="purchase" widget="monetary"/>
+                    <field name="price" widget="monetary"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_form_view" model="ir.ui.view">
+            <field name="name">Product Form View</field>
+            <field name="model">toy_product</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="category_id"/>
+                                <field name="quantity"/>
+                                <field name="unit_id"/>
+                                <field name="purchase" widget="monetary"/>
+                                <field name="price" widget="monetary"/>
+                            </group>
+                            <group>
+                                <field name="expiry_date"/>
+                                <field name="date_of_manufacture"/>
+                                <field name="barcode"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="retail_module_product_action" model="ir.actions.act_window">
+            <field name="name">Mặt hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">toy_product</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_id" ref="product_tree_view"/category-->
+        </record>
+
+        <menuitem id="retail_module_root_menu" name="Hệ thống bán lẻ" sequence="2" />
+        <menuitem id="retail_module_product_menu" name="Mặt Hàng" parent="retail_module.retail_module_root_menu"
+                  action="retail_module.retail_module_product_action" sequence="1" />
+
+    </data>
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_tree_view" model="ir.ui.view">
+            <field name="name">Purchase Tree View</field>
+            <field name="model">purchase</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="number_purchase"/>
+                    <field name="employee_id"/>
+                    <field name="supplier_id"/>
+                    <field name="purchase_date"/>
+                    <field name="state" widget="many2one_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="purchase_form_view" model="ir.ui.view">
+            <field name="name">Purchase Form View</field>
+            <field name="model">purchase</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="move" string="Đang di chuyển" type="object" states="0"/>
+                        <button name="success" string="Nhận hàng" type="object" states="0,1,3"/>
+                        <button name="cancel" string="Huỷ bỏ" type="object" states="0,1,2,3"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="number_purchase"/>
+                                <field name="employee_id"/>
+                                <field name="supplier_id"/>
+                                <field name="purchase_date"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Đơn hàng nhập">
+                                <field name="purchase_order_ids">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="purchase_quantity"/>
+                                        <field name="purchase_price"/>
+                                        <field name="sub_total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <footer>
+                            <field name="total_purchase"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="retail_module_purchase_action" model="ir.actions.act_window">
+            <field name="name">Nhập hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_id" ref="product_tree_view"/category-->
+        </record>
+
+        <menuitem id="retail_module_root_menu" name="Hệ thống bán lẻ" sequence="2" />
+
+        <menuitem id="retail_module_purchase1_menu" name="Nhập hàng" parent="retail_module.retail_module_toy_order_menu"
+                  action="retail_module.retail_module_purchase_action" sequence="2" />
+
+    </data>
+</odoo>
